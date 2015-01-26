@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DoorSwipesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DoorSwipes">
+          <Key>
+            <PropertyRef Name="&quot;TRAN_ID&quot;" />
+          </Key>
+          <Property Name="&quot;DoorAccessPostDateTime&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;TRAN_ID&quot;" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="&quot;MC_TRANSEQNUM&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;ISONLINE&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;VALIDATION_TYPE&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;ACTUALDATETIME&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;POSTDATETIME&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;TENDER_TYPE_ID&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;DOOR_ID&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;CUST_IDENTIFICATION_TYPE&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;CUST_ID&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;MASTERCONTROLLER_ID&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;HOSTCOMP_ID&quot;" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="DoorSwipesModelStoreContainer">
+          <EntitySet Name="DoorSwipes" EntityType="Self.DoorSwipes" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DoorSwipesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DoorSwipe">
+          <Key>
+            <PropertyRef Name="C_TRAN_ID_" />
+          </Key>
+          <Property Name="C_DoorAccessPostDateTime_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_TRAN_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C_MC_TRANSEQNUM_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_ISONLINE_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_VALIDATION_TYPE_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_ACTUALDATETIME_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_POSTDATETIME_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_TENDER_TYPE_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_DOOR_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_CUST_IDENTIFICATION_TYPE_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_CUST_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_MASTERCONTROLLER_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_HOSTCOMP_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DoorSwipesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DoorSwipes" EntityType="Self.DoorSwipe" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DoorSwipesModelStoreContainer" CdmEntityContainer="DoorSwipesEntities">
+          <EntitySetMapping Name="DoorSwipes">
+            <EntityTypeMapping TypeName="DoorSwipesModel.DoorSwipe">
+              <MappingFragment StoreEntitySet="DoorSwipes">
+                <ScalarProperty Name="C_DoorAccessPostDateTime_" ColumnName="&quot;DoorAccessPostDateTime&quot;" />
+                <ScalarProperty Name="C_TRAN_ID_" ColumnName="&quot;TRAN_ID&quot;" />
+                <ScalarProperty Name="C_MC_TRANSEQNUM_" ColumnName="&quot;MC_TRANSEQNUM&quot;" />
+                <ScalarProperty Name="C_ISONLINE_" ColumnName="&quot;ISONLINE&quot;" />
+                <ScalarProperty Name="C_VALIDATION_TYPE_" ColumnName="&quot;VALIDATION_TYPE&quot;" />
+                <ScalarProperty Name="C_ACTUALDATETIME_" ColumnName="&quot;ACTUALDATETIME&quot;" />
+                <ScalarProperty Name="C_POSTDATETIME_" ColumnName="&quot;POSTDATETIME&quot;" />
+                <ScalarProperty Name="C_TENDER_TYPE_ID_" ColumnName="&quot;TENDER_TYPE_ID&quot;" />
+                <ScalarProperty Name="C_DOOR_ID_" ColumnName="&quot;DOOR_ID&quot;" />
+                <ScalarProperty Name="C_CUST_IDENTIFICATION_TYPE_" ColumnName="&quot;CUST_IDENTIFICATION_TYPE&quot;" />
+                <ScalarProperty Name="C_CUST_ID_" ColumnName="&quot;CUST_ID&quot;" />
+                <ScalarProperty Name="C_MASTERCONTROLLER_ID_" ColumnName="&quot;MASTERCONTROLLER_ID&quot;" />
+                <ScalarProperty Name="C_HOSTCOMP_ID_" ColumnName="&quot;HOSTCOMP_ID&quot;" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
