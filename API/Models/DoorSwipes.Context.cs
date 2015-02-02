@@ -26,5 +26,6 @@ namespace API.Models
         }
     
         public virtual DbSet<DoorSwipe> DoorSwipes { get; set; }
+        public virtual DbSet<Door> Doors { get; set; }
     }
 }

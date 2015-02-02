@@ -4,7 +4,32 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DoorSwipesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DoorSwipesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Doors">
+          <Key>
+            <PropertyRef Name="&quot;DOOR_ID&quot;" />
+          </Key>
+          <Property Name="&quot;DOOR_ID&quot;" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="&quot;MASTERCONTROLLER_ID&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;ADDRESS&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;MERCHANT_ID&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;DOOR_IDENTIFIER&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;DESCRIPTION&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;BUILDING_ID&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;AREA_ID&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;DOOR_GROUP_ID&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;USE_DOOR_DEFAULT&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;DOOR_UNLOCK_TIME_SECONDS&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;MIN_SIREN_TIME_SECONDS&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;HELD_ALARM_TYPE&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;HELD_ALARM_DELAY_TIME_SECONDS&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;FORCE_ALARM_TYPE&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;FORCE_ALARM_DELAY_TIME_SECONDS&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;USE_DOOR_DEFAULT_SCHEDULE&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;SCHEDULE_ID&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;OFFLINE_OPERATION_TYPE&quot;" Type="varchar" MaxLength="50" />
+          <Property Name="&quot;ALARM_INSTRUCTIONS&quot;" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="DoorSwipes">
           <Key>
             <PropertyRef Name="&quot;TRAN_ID&quot;" />
@@ -24,10 +49,10 @@
           <Property Name="&quot;HOSTCOMP_ID&quot;" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="DoorSwipesModelStoreContainer">
+          <EntitySet Name="Doors" EntityType="Self.Doors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DoorSwipes" EntityType="Self.DoorSwipes" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DoorSwipesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -51,7 +76,33 @@
         </EntityType>
         <EntityContainer Name="DoorSwipesEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DoorSwipes" EntityType="Self.DoorSwipe" />
+          <EntitySet Name="Doors" EntityType="DoorSwipesModel.Door" />
         </EntityContainer>
+        <EntityType Name="Door">
+          <Key>
+            <PropertyRef Name="C_DOOR_ID_" />
+          </Key>
+          <Property Name="C_DOOR_ID_" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_MASTERCONTROLLER_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_ADDRESS_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_MERCHANT_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_DOOR_IDENTIFIER_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_DESCRIPTION_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_BUILDING_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_AREA_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_DOOR_GROUP_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_USE_DOOR_DEFAULT_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_DOOR_UNLOCK_TIME_SECONDS_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_MIN_SIREN_TIME_SECONDS_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_HELD_ALARM_TYPE_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_HELD_ALARM_DELAY_TIME_SECONDS_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_FORCE_ALARM_TYPE_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_FORCE_ALARM_DELAY_TIME_SECONDS_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_USE_DOOR_DEFAULT_SCHEDULE_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_SCHEDULE_ID_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_OFFLINE_OPERATION_TYPE_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_ALARM_INSTRUCTIONS_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -74,6 +125,32 @@
                 <ScalarProperty Name="C_CUST_ID_" ColumnName="&quot;CUST_ID&quot;" />
                 <ScalarProperty Name="C_MASTERCONTROLLER_ID_" ColumnName="&quot;MASTERCONTROLLER_ID&quot;" />
                 <ScalarProperty Name="C_HOSTCOMP_ID_" ColumnName="&quot;HOSTCOMP_ID&quot;" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doors">
+            <EntityTypeMapping TypeName="DoorSwipesModel.Door">
+              <MappingFragment StoreEntitySet="Doors">
+                <ScalarProperty Name="C_ALARM_INSTRUCTIONS_" ColumnName="&quot;ALARM_INSTRUCTIONS&quot;" />
+                <ScalarProperty Name="C_OFFLINE_OPERATION_TYPE_" ColumnName="&quot;OFFLINE_OPERATION_TYPE&quot;" />
+                <ScalarProperty Name="C_SCHEDULE_ID_" ColumnName="&quot;SCHEDULE_ID&quot;" />
+                <ScalarProperty Name="C_USE_DOOR_DEFAULT_SCHEDULE_" ColumnName="&quot;USE_DOOR_DEFAULT_SCHEDULE&quot;" />
+                <ScalarProperty Name="C_FORCE_ALARM_DELAY_TIME_SECONDS_" ColumnName="&quot;FORCE_ALARM_DELAY_TIME_SECONDS&quot;" />
+                <ScalarProperty Name="C_FORCE_ALARM_TYPE_" ColumnName="&quot;FORCE_ALARM_TYPE&quot;" />
+                <ScalarProperty Name="C_HELD_ALARM_DELAY_TIME_SECONDS_" ColumnName="&quot;HELD_ALARM_DELAY_TIME_SECONDS&quot;" />
+                <ScalarProperty Name="C_HELD_ALARM_TYPE_" ColumnName="&quot;HELD_ALARM_TYPE&quot;" />
+                <ScalarProperty Name="C_MIN_SIREN_TIME_SECONDS_" ColumnName="&quot;MIN_SIREN_TIME_SECONDS&quot;" />
+                <ScalarProperty Name="C_DOOR_UNLOCK_TIME_SECONDS_" ColumnName="&quot;DOOR_UNLOCK_TIME_SECONDS&quot;" />
+                <ScalarProperty Name="C_USE_DOOR_DEFAULT_" ColumnName="&quot;USE_DOOR_DEFAULT&quot;" />
+                <ScalarProperty Name="C_DOOR_GROUP_ID_" ColumnName="&quot;DOOR_GROUP_ID&quot;" />
+                <ScalarProperty Name="C_AREA_ID_" ColumnName="&quot;AREA_ID&quot;" />
+                <ScalarProperty Name="C_BUILDING_ID_" ColumnName="&quot;BUILDING_ID&quot;" />
+                <ScalarProperty Name="C_DESCRIPTION_" ColumnName="&quot;DESCRIPTION&quot;" />
+                <ScalarProperty Name="C_DOOR_IDENTIFIER_" ColumnName="&quot;DOOR_IDENTIFIER&quot;" />
+                <ScalarProperty Name="C_MERCHANT_ID_" ColumnName="&quot;MERCHANT_ID&quot;" />
+                <ScalarProperty Name="C_ADDRESS_" ColumnName="&quot;ADDRESS&quot;" />
+                <ScalarProperty Name="C_MASTERCONTROLLER_ID_" ColumnName="&quot;MASTERCONTROLLER_ID&quot;" />
+                <ScalarProperty Name="C_DOOR_ID_" ColumnName="&quot;DOOR_ID&quot;" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

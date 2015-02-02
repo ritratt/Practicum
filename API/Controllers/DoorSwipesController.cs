@@ -35,85 +35,63 @@ namespace API.Controllers
             return Ok(doorSwipe);
         }
 
-        // PUT: api/DoorSwipes/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutDoorSwipe(string id, DoorSwipe doorSwipe)
+        // GET: api/DoorSwipes/GetDoorSwipeByLocation/123
+        [Route("api/DoorSwipes/GetDoorSwipeByLocation/{LocationId}")]
+        public IHttpActionResult GetDoorSwipeByLocation(String LocationId)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var Swipes = db.DoorSwipes
+                .Where(s => s.C_DOOR_ID_ == LocationId)
+                .ToList();
 
-            if (id != doorSwipe.C_TRAN_ID_)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(doorSwipe).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DoorSwipeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/DoorSwipes
-        [ResponseType(typeof(DoorSwipe))]
-        public IHttpActionResult PostDoorSwipe(DoorSwipe doorSwipe)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.DoorSwipes.Add(doorSwipe);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (DoorSwipeExists(doorSwipe.C_TRAN_ID_))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = doorSwipe.C_TRAN_ID_ }, doorSwipe);
-        }
-
-        // DELETE: api/DoorSwipes/5
-        [ResponseType(typeof(DoorSwipe))]
-        public IHttpActionResult DeleteDoorSwipe(string id)
-        {
-            DoorSwipe doorSwipe = db.DoorSwipes.Find(id);
-            if (doorSwipe == null)
+            if (Swipes == null)
             {
                 return NotFound();
             }
 
-            db.DoorSwipes.Remove(doorSwipe);
-            db.SaveChanges();
+            return Ok(Swipes);
+        }
 
-            return Ok(doorSwipe);
+        /*// GET: api/DoorSwipes/GetDoorSwipeByName/123
+        [Route("api/DoorSwipes/GetDoorSwipeByName/{Name}")]
+        public IHttpActionResult GetDoorSwipeByName(String Name)
+        {
+            
+        }*/
+
+        //GET: ap/DoorSwipes/GetDoorSwipesByDoorName/{DoorName}
+        [Route("api/DoorSwipes/GetDoorSwipesByDoorName/{DoorName}")]
+        public IHttpActionResult GetDoorSwipesByDoorName(String DoorName)
+        {
+            /*Optimize this function*/
+
+            var Doors = db.Doors
+                .Where(d => d.C_DESCRIPTION_.Contains("DoorName"))
+                .Select(d => d.C_DOOR_ID_)
+                .ToList();
+
+            var Swipes = db.DoorSwipes
+                .Where(d => Doors.Contains(d.C_DOOR_ID_))
+                .ToList();
+
+            if (Swipes.Count == 0)
+            {
+                return Ok("No results found");
+            }
+
+            return Ok(Swipes);
+        }
+
+        //GET: ap/DoorSwipes/GetDoorSwipesByDate/{Date}
+        [Route("api/DoorSwipes/GetDoorSwipesByDate/{Date}")]
+        public IHttpActionResult GetDoorSwipesByDate(String Date)
+        {
+            //FIX!!
+            DateTime Date_Formatted = DateTime.Parse(Date);
+
+            var Swipes = db.DoorSwipes
+                .Where(s => s.C_ACTUALDATETIME_ == Date);
+
+            return Ok(Swipes);
         }
 
         protected override void Dispose(bool disposing)
