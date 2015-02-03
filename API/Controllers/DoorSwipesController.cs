@@ -35,6 +35,20 @@ namespace API.Controllers
             return Ok(doorSwipe);
         }
 
+        // GET: api/DoorSwipes/GetDoorSwipeByCustId/123
+        [Route("api/DoorSwipes/GetDoorSwipeByCustId/{CustId}")]
+        public IHttpActionResult GetDoorSwipeByCustId(String CustId)
+        {
+            var Swipes = db.DoorSwipes
+                .Where(s => s.C_CUST_ID_ == CustId)
+                .ToList();
+
+            if (Swipes.Count == 0)
+                return Ok("No Results found");
+            else
+                return Ok(Swipes);
+        }
+
         // GET: api/DoorSwipes/GetDoorSwipeByLocation/123
         [Route("api/DoorSwipes/GetDoorSwipeByLocation/{LocationId}")]
         public IHttpActionResult GetDoorSwipeByLocation(String LocationId)
