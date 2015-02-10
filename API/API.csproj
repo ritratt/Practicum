@@ -206,6 +206,10 @@
     <Compile Include="Areas\RoleManager\Controllers\UsersController.cs" />
     <Compile Include="Areas\RoleManager\Models\RoleManagerModel.cs" />
     <Compile Include="Areas\RoleManager\RoleManagerAreaRegistration.cs" />
+    <Compile Include="Areas\ToDoList\Controllers\TasksController.cs" />
+    <Compile Include="Areas\ToDoList\Models\Tasks.cs" />
+    <Compile Include="Areas\ToDoList\Models\ToDoListContext.cs" />
+    <Compile Include="Areas\ToDoList\ToDoListAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DoorSwipesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -321,6 +325,12 @@
     <Content Include="Areas\AppManager\Views\Apps\Details.cshtml" />
     <Content Include="Areas\AppManager\Views\Apps\Edit.cshtml" />
     <Content Include="Areas\AppManager\Views\Apps\Index.cshtml" />
+    <Content Include="Areas\ToDoList\Views\web.config" />
+    <Content Include="Areas\ToDoList\Views\Tasks\Create.cshtml" />
+    <Content Include="Areas\ToDoList\Views\Tasks\Delete.cshtml" />
+    <Content Include="Areas\ToDoList\Views\Tasks\Details.cshtml" />
+    <Content Include="Areas\ToDoList\Views\Tasks\Edit.cshtml" />
+    <Content Include="Areas\ToDoList\Views\Tasks\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -355,6 +365,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AppManager\Views\Shared\" />
     <Folder Include="Areas\RoleManager\Views\Shared\" />
+    <Folder Include="Areas\ToDoList\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
