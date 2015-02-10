@@ -9,17 +9,18 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using API.Models;
+using API.Providers;
 
 namespace API.Controllers
 {
     public class DoorSwipesController : ApiController
     {
         private DoorSwipesEntities db = new DoorSwipesEntities();
+        private IUtilProvider _utilProvider;
 
-        // GET: api/DoorSwipes
-        public IQueryable<DoorSwipe> GetDoorSwipes()
+        public DoorSwipesController()
         {
-            return db.DoorSwipes;
+            _utilProvider = new UtilProvider();
         }
 
         // GET: api/DoorSwipes/5
@@ -27,6 +28,7 @@ namespace API.Controllers
         public IHttpActionResult GetDoorSwipe(string id)
         {
             DoorSwipe doorSwipe = db.DoorSwipes.Find(id);
+
             if (doorSwipe == null)
             {
                 return NotFound();
@@ -40,13 +42,14 @@ namespace API.Controllers
         public IHttpActionResult GetDoorSwipeByCustId(String CustId)
         {
             var Swipes = db.DoorSwipes
-                .Where(s => s.C_CUST_ID_ == CustId)
-                .ToList();
+                .Where(s => s.C_CUST_ID_ == CustId);
 
-            if (Swipes.Count == 0)
+            var swipeColumns = _utilProvider.SwipeColumninator(Swipes);
+
+            if (swipeColumns.Count == 0)
                 return Ok("No Results found");
             else
-                return Ok(Swipes);
+                return Ok(swipeColumns);
         }
 
         // GET: api/DoorSwipes/GetDoorSwipeByLocation/123
@@ -54,15 +57,14 @@ namespace API.Controllers
         public IHttpActionResult GetDoorSwipeByLocation(String LocationId)
         {
             var Swipes = db.DoorSwipes
-                .Where(s => s.C_DOOR_ID_ == LocationId)
-                .ToList();
+                .Where(s => s.C_DOOR_ID_ == LocationId);
+            
+            var swipeColumns = _utilProvider.SwipeColumninator(Swipes);
 
-            if (Swipes == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(Swipes);
+            if (swipeColumns.Count == 0)
+                return Ok("No Results found");
+            else
+                return Ok(swipeColumns);
         }
 
         /*// GET: api/DoorSwipes/GetDoorSwipeByName/123
@@ -79,20 +81,19 @@ namespace API.Controllers
             /*Optimize this function*/
 
             var Doors = db.Doors
-                .Where(d => d.C_DESCRIPTION_.Contains("DoorName"))
+                .Where(d => d.C_DESCRIPTION_.Contains(DoorName))
                 .Select(d => d.C_DOOR_ID_)
                 .ToList();
 
             var Swipes = db.DoorSwipes
-                .Where(d => Doors.Contains(d.C_DOOR_ID_))
-                .ToList();
+                .Where(d => Doors.Contains(d.C_DOOR_ID_));
 
-            if (Swipes.Count == 0)
-            {
-                return Ok("No results found");
-            }
+            var swipeColumns = _utilProvider.SwipeColumninator(Swipes);
 
-            return Ok(Swipes);
+            if (swipeColumns.Count == 0)
+                return Ok("No Results found");
+            else
+                return Ok(swipeColumns);
         }
 
         //GET: ap/DoorSwipes/GetDoorSwipesByDate/{Date}
@@ -102,10 +103,19 @@ namespace API.Controllers
             //FIX!!
             DateTime Date_Formatted = DateTime.Parse(Date);
 
+            var foo =  db.DoorSwipes
+                .Where(s => s.C_ACTUALDATETIME_ == Date);
+            var baz = foo;
+
             var Swipes = db.DoorSwipes
                 .Where(s => s.C_ACTUALDATETIME_ == Date);
 
-            return Ok(Swipes);
+            var swipeColumns = _utilProvider.SwipeColumninator(Swipes);
+
+            if (swipeColumns.Count == 0)
+                return Ok("No Results found");
+            else
+                return Ok(swipeColumns);
         }
 
         protected override void Dispose(bool disposing)
