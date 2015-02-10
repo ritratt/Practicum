@@ -6,112 +6,111 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using API.Areas.RoleManager.Models;
-using API.RoleManager.Models;
+using API.Areas.AppManager.Models;
 
-namespace API.Areas.RoleManager.Controllers
+namespace API.Areas.AppManager.Controllers
 {
-    public class RolesController : Controller
+    public class AppsController : Controller
     {
-        private RoleManagerContext db = new RoleManagerContext();
+        private AppManagerContext db = new AppManagerContext();
 
-        // GET: RoleManager/Roles
+        // GET: AppManager/Apps
         public ActionResult Index()
         {
-            return View(db.Roles.ToList());
+            return View(db.Apps.ToList());
         }
 
-        // GET: RoleManager/Roles/Details/5
+        // GET: AppManager/Apps/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
-            if (role == null)
+            Apps apps = db.Apps.Find(id);
+            if (apps == null)
             {
                 return HttpNotFound();
             }
-            return View(role);
+            return View(apps);
         }
 
-        // GET: RoleManager/Roles/Create
+        // GET: AppManager/Apps/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: RoleManager/Roles/Create
+        // POST: AppManager/Apps/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name")] Role role)
+        public ActionResult Create([Bind(Include = "Id,GTAccount")] Apps apps)
         {
             if (ModelState.IsValid)
             {
-                db.Roles.Add(role);
+                db.Apps.Add(apps);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(role);
+            return View(apps);
         }
 
-        // GET: RoleManager/Roles/Edit/5
+        // GET: AppManager/Apps/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
-            if (role == null)
+            Apps apps = db.Apps.Find(id);
+            if (apps == null)
             {
                 return HttpNotFound();
             }
-            return View(role);
+            return View(apps);
         }
 
-        // POST: RoleManager/Roles/Edit/5
+        // POST: AppManager/Apps/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Name")] Role role)
+        public ActionResult Edit([Bind(Include = "Id,GTAccount")] Apps apps)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(role).State = EntityState.Modified;
+                db.Entry(apps).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(role);
+            return View(apps);
         }
 
-        // GET: RoleManager/Roles/Delete/5
+        // GET: AppManager/Apps/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role role = db.Roles.Find(id);
-            if (role == null)
+            Apps apps = db.Apps.Find(id);
+            if (apps == null)
             {
                 return HttpNotFound();
             }
-            return View(role);
+            return View(apps);
         }
 
-        // POST: RoleManager/Roles/Delete/5
+        // POST: AppManager/Apps/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Role role = db.Roles.Find(id);
-            db.Roles.Remove(role);
+            Apps apps = db.Apps.Find(id);
+            db.Apps.Remove(apps);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

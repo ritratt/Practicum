@@ -169,6 +169,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\AppManager\AppManagerAreaRegistration.cs" />
+    <Compile Include="Areas\AppManager\Controllers\AppsController.cs" />
+    <Compile Include="Areas\AppManager\Models\AppManagerContext.cs" />
+    <Compile Include="Areas\AppManager\Models\Apps.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -309,6 +313,12 @@
     <Content Include="Areas\RoleManager\Views\Users\Details.cshtml" />
     <Content Include="Areas\RoleManager\Views\Users\Edit.cshtml" />
     <Content Include="Areas\RoleManager\Views\Users\Index.cshtml" />
+    <Content Include="Areas\AppManager\Views\web.config" />
+    <Content Include="Areas\AppManager\Views\Apps\Create.cshtml" />
+    <Content Include="Areas\AppManager\Views\Apps\Delete.cshtml" />
+    <Content Include="Areas\AppManager\Views\Apps\Details.cshtml" />
+    <Content Include="Areas\AppManager\Views\Apps\Edit.cshtml" />
+    <Content Include="Areas\AppManager\Views\Apps\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -341,6 +351,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\AppManager\Views\Shared\" />
     <Folder Include="Areas\RoleManager\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

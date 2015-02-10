@@ -5,7 +5,7 @@ namespace API.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<API.RoleManager.Models.Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<API.RoleManager.Models.RoleManagerContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace API.Migrations
             ContextKey = "API.RoleManager.Models.Context";
         }
 
-        protected override void Seed(API.RoleManager.Models.Context context)
+        protected override void Seed(API.RoleManager.Models.RoleManagerContext context)
         {
             //  This method will be called after migrating to the latest version.
 

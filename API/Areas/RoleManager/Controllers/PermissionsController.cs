@@ -13,7 +13,7 @@ namespace API.Areas.RoleManager.Controllers
 {
     public class PermissionsController : Controller
     {
-        private Context db = new Context();
+        private RoleManagerContext db = new RoleManagerContext();
 
         // GET: RoleManager/Permissions
         public ActionResult Index()

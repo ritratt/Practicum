@@ -4,9 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace API.RoleManager.Models
+namespace API.Areas.AppManager.Models
 {
-    public class RoleManagerContext : DbContext
+    public class AppManagerContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -15,15 +15,11 @@ namespace API.RoleManager.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public RoleManagerContext() : base("name=Context")
+        public AppManagerContext() : base("name=AppManagerContext")
         {
         }
 
-        public System.Data.Entity.DbSet<API.Areas.RoleManager.Models.Permission> Permissions { get; set; }
-
-        public System.Data.Entity.DbSet<API.Areas.RoleManager.Models.Role> Roles { get; set; }
-
-        public System.Data.Entity.DbSet<API.Areas.RoleManager.Models.User> Users { get; set; }
+        public System.Data.Entity.DbSet<API.Areas.AppManager.Models.Apps> Apps { get; set; }
     
     }
 }
