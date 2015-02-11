@@ -27,7 +27,7 @@ namespace API.Areas.AppManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Apps apps = db.Apps.Find(id);
+            App apps = db.Apps.Find(id);
             if (apps == null)
             {
                 return HttpNotFound();
@@ -46,16 +46,19 @@ namespace API.Areas.AppManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,GTAccount")] Apps apps)
+        public ActionResult Create(App app)
         {
+            String apiKey = Guid.NewGuid().ToString("N");
+            app.Id = apiKey;
+
             if (ModelState.IsValid)
             {
-                db.Apps.Add(apps);
+                db.Apps.Add(app);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(apps);
+            return View(app);
         }
 
         // GET: AppManager/Apps/Edit/5
@@ -65,7 +68,7 @@ namespace API.Areas.AppManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Apps apps = db.Apps.Find(id);
+            App apps = db.Apps.Find(id);
             if (apps == null)
             {
                 return HttpNotFound();
@@ -78,7 +81,7 @@ namespace API.Areas.AppManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,GTAccount")] Apps apps)
+        public ActionResult Edit([Bind(Include = "Id,GTAccount")] App apps)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +99,7 @@ namespace API.Areas.AppManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Apps apps = db.Apps.Find(id);
+            App apps = db.Apps.Find(id);
             if (apps == null)
             {
                 return HttpNotFound();
@@ -109,7 +112,7 @@ namespace API.Areas.AppManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Apps apps = db.Apps.Find(id);
+            App apps = db.Apps.Find(id);
             db.Apps.Remove(apps);
             db.SaveChanges();
             return RedirectToAction("Index");

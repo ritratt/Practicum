@@ -19,7 +19,7 @@ namespace API.Areas.AppManager.Models
         {
         }
 
-        public System.Data.Entity.DbSet<API.Areas.AppManager.Models.Apps> Apps { get; set; }
+        public System.Data.Entity.DbSet<API.Areas.AppManager.Models.App> Apps { get; set; }
     
     }
 }

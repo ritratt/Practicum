@@ -172,7 +172,7 @@
     <Compile Include="Areas\AppManager\AppManagerAreaRegistration.cs" />
     <Compile Include="Areas\AppManager\Controllers\AppsController.cs" />
     <Compile Include="Areas\AppManager\Models\AppManagerContext.cs" />
-    <Compile Include="Areas\AppManager\Models\Apps.cs" />
+    <Compile Include="Areas\AppManager\Models\App.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -308,14 +308,11 @@
     <Content Include="Areas\RoleManager\Views\Permissions\Delete.cshtml" />
     <Content Include="Areas\RoleManager\Views\Permissions\Details.cshtml" />
     <Content Include="Areas\RoleManager\Views\Permissions\Edit.cshtml" />
-    <Content Include="Areas\RoleManager\Views\Permissions\Index.cshtml" />
     <Content Include="Areas\RoleManager\Views\Roles\Create.cshtml" />
     <Content Include="Areas\RoleManager\Views\Roles\Delete.cshtml" />
     <Content Include="Areas\RoleManager\Views\Roles\Details.cshtml" />
     <Content Include="Areas\RoleManager\Views\Roles\Edit.cshtml" />
     <Content Include="Areas\RoleManager\Views\Roles\Index.cshtml" />
-    <Content Include="Areas\RoleManager\Views\Users\Create.cshtml" />
-    <Content Include="Areas\RoleManager\Views\Users\Delete.cshtml" />
     <Content Include="Areas\RoleManager\Views\Users\Details.cshtml" />
     <Content Include="Areas\RoleManager\Views\Users\Edit.cshtml" />
     <Content Include="Areas\RoleManager\Views\Users\Index.cshtml" />
@@ -331,6 +328,19 @@
     <Content Include="Areas\ToDoList\Views\Tasks\Details.cshtml" />
     <Content Include="Areas\ToDoList\Views\Tasks\Edit.cshtml" />
     <Content Include="Areas\ToDoList\Views\Tasks\Index.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Users\Create.cshtml" />
+    <Content Include="Areas\RoleManager\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Permissions\Index.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Shared\_itgLayout.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Shared\Footer.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Shared\MastHead.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Shared\SuperFooter.cshtml" />
+    <Content Include="Areas\AppManager\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\AppManager\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -360,11 +370,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\_itgLayout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Shared\MastHead.cshtml" />
+    <Content Include="Views\Shared\SuperFooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\AppManager\Views\Shared\" />
-    <Folder Include="Areas\RoleManager\Views\Shared\" />
     <Folder Include="Areas\ToDoList\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

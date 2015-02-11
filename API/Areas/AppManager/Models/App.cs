@@ -6,7 +6,7 @@ using System.Web;
 
 namespace API.Areas.AppManager.Models
 {
-    public class Apps
+    public class App
     {
         [Key]
         public String Id { get; set; }
