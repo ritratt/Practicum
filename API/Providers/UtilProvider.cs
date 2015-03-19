@@ -22,6 +22,18 @@ namespace API.Providers
                 })
                 .ToList();
         }
+
+        public double DateConverter(string dirtyDateTime)
+        {
+            var splitDirtyDateTime = dirtyDateTime.Split(' ');
+            var parsedDate = splitDirtyDateTime[0];
+            var parsedTime = splitDirtyDateTime[1].Replace('-', ':');
+            var parsedDateTime = DateTime.Parse(parsedDate + " " + parsedTime);
+            var baseDateTime = new DateTime(1900, 01, 01, 00, 00, 00);
+            var diff = parsedDateTime - baseDateTime;
+            var diffAsdays = diff.TotalDays;
+            return diffAsdays;
+        }
     }
 
     public class SwipeColumns

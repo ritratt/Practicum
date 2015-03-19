@@ -74,7 +74,7 @@ namespace API.Controllers
             
         }*/
 
-        //GET: ap/DoorSwipes/GetDoorSwipesByDoorName/{DoorName}
+        //GET: api/DoorSwipes/GetDoorSwipesByDoorName/{DoorName}
         [Route("api/DoorSwipes/GetDoorSwipesByDoorName/{DoorName}")]
         public IHttpActionResult GetDoorSwipesByDoorName(String DoorName)
         {
@@ -96,20 +96,15 @@ namespace API.Controllers
                 return Ok(swipeColumns);
         }
 
-        //GET: ap/DoorSwipes/GetDoorSwipesByDate/{Date}
-        [Route("api/DoorSwipes/GetDoorSwipesByDate/{Date}")]
-        public IHttpActionResult GetDoorSwipesByDate(String Date)
+        //GET: api/DoorSwipes/GetDoorSwipesByDate/{Date}
+        [Route("api/DoorSwipes/GetDoorSwipesByTimeStamp/{dateTimeStamp}")]
+        public IHttpActionResult GetDoorSwipesByTimeStamp(String dateTimeStamp)
         {
-            //FIX!!
-            DateTime Date_Formatted = DateTime.Parse(Date);
-
-            var foo =  db.DoorSwipes
-                .Where(s => s.C_ACTUALDATETIME_ == Date);
-            var baz = foo;
-
-            var Swipes = db.DoorSwipes
-                .Where(s => s.C_ACTUALDATETIME_ == Date);
-
+            var inputDate = _utilProvider.DateConverter(dateTimeStamp);
+            
+            var Swipes =  db.DoorSwipes
+                .Where(s => s.C_ACTUALDATETIME_ == inputDate.ToString());
+            
             var swipeColumns = _utilProvider.SwipeColumninator(Swipes);
 
             if (swipeColumns.Count == 0)

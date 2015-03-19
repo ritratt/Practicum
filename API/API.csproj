@@ -16,10 +16,10 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>55944</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -307,7 +308,6 @@
     <Content Include="Areas\RoleManager\Views\Permissions\Create.cshtml" />
     <Content Include="Areas\RoleManager\Views\Permissions\Delete.cshtml" />
     <Content Include="Areas\RoleManager\Views\Permissions\Details.cshtml" />
-    <Content Include="Areas\RoleManager\Views\Permissions\Edit.cshtml" />
     <Content Include="Areas\RoleManager\Views\Roles\Create.cshtml" />
     <Content Include="Areas\RoleManager\Views\Roles\Delete.cshtml" />
     <Content Include="Areas\RoleManager\Views\Roles\Details.cshtml" />
@@ -341,6 +341,7 @@
     <Content Include="Areas\RoleManager\Views\Shared\SuperFooter.cshtml" />
     <Content Include="Areas\AppManager\Views\_ViewStart.cshtml" />
     <Content Include="Areas\AppManager\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Permissions\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -416,7 +417,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55944</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55944/</IISUrl>
+          <IISUrl>https://localhost:44301/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

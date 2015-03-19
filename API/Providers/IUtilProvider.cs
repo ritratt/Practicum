@@ -10,5 +10,7 @@ namespace API.Providers
     interface IUtilProvider
     {
         List<SwipeColumns> SwipeColumninator(IQueryable<DoorSwipe> rawSwipes);
+
+        double DateConverter(string dirtyDate);
     }
 }
