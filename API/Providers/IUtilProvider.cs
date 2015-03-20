@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using API.Models;
 
 namespace API.Providers
@@ -12,5 +13,7 @@ namespace API.Providers
         List<SwipeColumns> SwipeColumninator(IQueryable<DoorSwipe> rawSwipes);
 
         double DateConverter(string dirtyDate);
+
+        Boolean HasPermission(String p);
     }
 }

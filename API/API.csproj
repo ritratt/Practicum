@@ -253,6 +253,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Providers\AttributeProvider.cs" />
     <Compile Include="Providers\IUtilProvider.cs" />
     <Compile Include="Providers\UtilProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

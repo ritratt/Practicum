@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using API.Areas.AppManager.Models;
+using API.Areas.RoleManager.Models;
 using API.Models;
+using API.RoleManager.Models;
 
 namespace API.Providers
 {
@@ -33,6 +36,26 @@ namespace API.Providers
             var diff = parsedDateTime - baseDateTime;
             var diffAsdays = diff.TotalDays;
             return diffAsdays;
+        }
+
+        public bool HasPermission(string p)
+        {
+            var apiKey = HttpContext.Current.Request.Headers["APIKey"];
+
+            var appContext = new AppManagerContext();
+            var roleManagerContext = new RoleManagerContext();
+
+            var permission = roleManagerContext.Permissions.First(perm => perm.Name == p);
+
+            var user = appContext.Apps.FirstOrDefault(a => a.Id == apiKey);
+
+            //ADD LOGIC TO CONNECT USER TO ROLE!!!
+            var role = new Role();
+
+            if (role.Permissions.Contains(permission))
+                return true;
+            
+            return false;
         }
     }
 
