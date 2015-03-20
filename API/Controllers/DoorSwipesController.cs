@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
 using API.Models;
 using API.Providers;
 
@@ -41,6 +42,10 @@ namespace API.Controllers
         [Route("api/DoorSwipes/GetDoorSwipeByCustId/{CustId}")]
         public IHttpActionResult GetDoorSwipeByCustId(String CustId)
         {
+            if (!(_utilProvider.HasPermission("ReadCustId" + CustId)))
+            {
+                return Ok("You do not have permission to access door swipes for this user.");
+            }
             var Swipes = db.DoorSwipes
                 .Where(s => s.C_CUST_ID_ == CustId);
 
@@ -109,8 +114,8 @@ namespace API.Controllers
 
             if (swipeColumns.Count == 0)
                 return Ok("No Results found");
-            else
-                return Ok(swipeColumns);
+                
+            return Ok(swipeColumns);
         }
 
         protected override void Dispose(bool disposing)

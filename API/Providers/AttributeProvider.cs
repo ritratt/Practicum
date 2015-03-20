@@ -2,26 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using API.Areas.AppManager.Models;
 using API.Areas.RoleManager.Models;
 using API.RoleManager.Models;
 
 namespace API.Providers
 {
-    public class AttributeProvider : Attribute
+    public class AttributeProvider : AuthorizeAttribute
     {
-        private String apiKey;
-
-        public AttributeProvider(String permission)
+        private readonly string _apiKey;
+        public AttributeProvider(string apiKey)
         {
-            var apiKey = HttpContext.Current.Request.Headers["APIKey"];
+            _apiKey = apiKey;
+        }
+        protected bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            // Get the headers
+            var headers = httpContext.Request.Headers;
 
             var appContext = new AppManagerContext();
+            var roleManagerContext = new RoleManagerContext();
 
-            var user = appContext.Apps
-                .Where(a => a.Id == apiKey);
+            var permission = roleManagerContext.Permissions.First(perm => perm.Name == _apiKey);
 
+            var user = appContext.Apps.FirstOrDefault(a => a.Id == _apiKey);
+
+            //ADD LOGIC TO CONNECT USER TO ROLE!!!
             var role = new Role();
+
+            if (role.Permissions.Contains(permission))
+                return true;
+
+            return false;
         }
     }
 }

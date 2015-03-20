@@ -13,6 +13,7 @@ namespace API.Providers
     {
         public List<SwipeColumns> SwipeColumninator(IQueryable<DoorSwipe> rawSwipes)
         {
+            //This function selects the columns the user is allowed to view and returns them as a new object.
             return rawSwipes
                 .Select(d => new SwipeColumns
                 {
@@ -28,6 +29,7 @@ namespace API.Providers
 
         public double DateConverter(string dirtyDateTime)
         {
+            //This function takes a timestamp from user and converts it into the number of days since 1st Jan 1900 as a float.
             var splitDirtyDateTime = dirtyDateTime.Split(' ');
             var parsedDate = splitDirtyDateTime[0];
             var parsedTime = splitDirtyDateTime[1].Replace('-', ':');
@@ -40,6 +42,7 @@ namespace API.Providers
 
         public bool HasPermission(string p)
         {
+            //This function takes a permission as argument and returns true or false if the user has the permission.
             var apiKey = HttpContext.Current.Request.Headers["APIKey"];
 
             var appContext = new AppManagerContext();
@@ -47,13 +50,21 @@ namespace API.Providers
 
             var permission = roleManagerContext.Permissions.First(perm => perm.Name == p);
 
-            var user = appContext.Apps.FirstOrDefault(a => a.Id == apiKey);
+            var gtid = appContext.Apps
+                .Where(a => a.Id == apiKey)
+                .Select(u => u.GTAccount)
+                .FirstOrDefault();
 
-            //ADD LOGIC TO CONNECT USER TO ROLE!!!
-            var role = new Role();
+            var roles = roleManagerContext.Users
+                .Where(u => u.GTAccount == gtid)
+                .Select(u => u.Roles)
+                .FirstOrDefault();
 
-            if (role.Permissions.Contains(permission))
-                return true;
+            foreach (var role in roles)
+            {
+                if (role.Permissions.Contains(permission))
+                    return true;
+            }
             
             return false;
         }
