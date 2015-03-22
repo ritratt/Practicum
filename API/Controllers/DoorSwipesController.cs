@@ -9,8 +9,10 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.Results;
+using API.Areas.AppManager.Models;
 using API.Models;
 using API.Providers;
+using API.RoleManager.Models;
 
 namespace API.Controllers
 {
@@ -21,7 +23,7 @@ namespace API.Controllers
 
         public DoorSwipesController()
         {
-            _utilProvider = new UtilProvider();
+            _utilProvider = new UtilProvider(new AppManagerContext(), new RoleManagerContext());
         }
 
         // GET: api/DoorSwipes/5

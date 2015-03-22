@@ -343,6 +343,7 @@
     <Content Include="Areas\AppManager\Views\_ViewStart.cshtml" />
     <Content Include="Areas\AppManager\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\RoleManager\Views\Permissions\Edit.cshtml" />
+    <Content Include="Areas\RoleManager\Views\Shared\DisplayTemplates\PermissionList_Display.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

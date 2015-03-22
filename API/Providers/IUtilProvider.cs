@@ -15,5 +15,7 @@ namespace API.Providers
         double DateConverter(string dirtyDate);
 
         Boolean HasPermission(String p);
+
+        Boolean HasPermissionForId(String apiKey, String id);
     }
 }

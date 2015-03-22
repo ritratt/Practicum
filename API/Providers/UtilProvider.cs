@@ -11,6 +11,15 @@ namespace API.Providers
 {
     public class UtilProvider : IUtilProvider
     {
+        private AppManagerContext _appContext;
+        private RoleManagerContext _roleManagerContext;
+
+        public UtilProvider(AppManagerContext appManagerContext, RoleManagerContext roleManagerContext)
+        {
+            _appContext = appManagerContext;
+            _roleManagerContext = roleManagerContext;
+        }
+
         public List<SwipeColumns> SwipeColumninator(IQueryable<DoorSwipe> rawSwipes)
         {
             //This function selects the columns the user is allowed to view and returns them as a new object.
@@ -45,17 +54,14 @@ namespace API.Providers
             //This function takes a permission as argument and returns true or false if the user has the permission.
             var apiKey = HttpContext.Current.Request.Headers["APIKey"];
 
-            var appContext = new AppManagerContext();
-            var roleManagerContext = new RoleManagerContext();
+            var permission = _roleManagerContext.Permissions.First(perm => perm.Name == p);
 
-            var permission = roleManagerContext.Permissions.First(perm => perm.Name == p);
-
-            var gtid = appContext.Apps
+            var gtid = _appContext.Apps
                 .Where(a => a.Id == apiKey)
                 .Select(u => u.GTAccount)
                 .FirstOrDefault();
 
-            var roles = roleManagerContext.Users
+            var roles = _roleManagerContext.Users
                 .Where(u => u.GTAccount == gtid)
                 .Select(u => u.Roles)
                 .FirstOrDefault();
@@ -66,6 +72,20 @@ namespace API.Providers
                     return true;
             }
             
+            return false;
+        }
+
+        public Boolean HasPermissionForId(String apiKey, String id)
+        {
+            var Id = _appContext.Apps
+                .Where(a => a.Id == apiKey)
+                .Select(r => r.GTAccount)
+                .FirstOrDefault();
+
+            if (Id == id)
+            {
+                return true;
+            }
             return false;
         }
     }

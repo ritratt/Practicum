@@ -39,7 +39,20 @@ namespace API.Areas.RoleManager.Controllers
         // GET: RoleManager/Roles/Create
         public ActionResult Create()
         {
-            return View();
+            var role = new Role();
+           
+            role.Permissions = new List<Permission>();
+
+            return View(new CreateRoleViewModel
+            {
+                Role = role,
+                PermissionsList = db.Permissions.ToList().Select(x => new SelectListItem()
+                {
+                    Selected = role.Permissions.Contains(x),
+                    Text = x.Name,
+                    Value = x.Name
+                })
+            });
         }
 
         // POST: RoleManager/Roles/Create
@@ -47,8 +60,18 @@ namespace API.Areas.RoleManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name")] Role role)
+        public ActionResult Create(CreateRoleViewModel model, String[] SelectedPermissions)
         {
+            var role = model.Role;
+            
+            role.Permissions = new List<Permission>();
+
+            foreach (var p in SelectedPermissions)
+            {
+                var permission = db.Permissions.FirstOrDefault(perm => perm.Name == p);
+                role.Permissions.Add(permission);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Roles.Add(role);
@@ -56,7 +79,7 @@ namespace API.Areas.RoleManager.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(role);
+            return View(model);
         }
 
         // GET: RoleManager/Roles/Edit/5

@@ -1,9 +1,5 @@
 ﻿@model API.Areas.RoleManager.Models.Role
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 
 <html>
@@ -16,6 +12,12 @@
         <h4>Role</h4>
         <hr />
         <dl class="dl-horizontal">
+            <dt>
+                @Html.LabelFor(model => model.Name)
+            </dt>
+            <dt>
+                @Html.DisplayFor(model => model.Permissions, "PermissionList_Display")
+            </dt>
         </dl>
     </div>
     <p>

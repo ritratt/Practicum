@@ -1,0 +1,6 @@
+﻿@model List<API.Areas.RoleManager.Models.Permission>
+
+@foreach (var permission in Model)
+{
+    @Html.DisplayTextFor(model => permission.Name) <br />
+}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 
 namespace API.Areas.RoleManager.Models
 {
@@ -11,7 +11,7 @@ namespace API.Areas.RoleManager.Models
         [Key]
         public String GTAccount { get; set; }
 
-        public List<Role> Roles { get; set; }
+        public virtual List<Role> Roles { get; set; }
 
     }
 
@@ -20,12 +20,19 @@ namespace API.Areas.RoleManager.Models
         [Key]
         public String Name { get; set; }
 
-        public List<Permission> Permissions { get; set; }
+        public virtual List<Permission> Permissions { get; set; }
     }
 
     public class Permission
     {
         [Key]
         public String Name { get; set; }
+    }
+
+    public class CreateRoleViewModel
+    {
+        public Role Role { get; set; }
+
+        public IEnumerable<SelectListItem> PermissionsList { get; set; }
     }
 }
