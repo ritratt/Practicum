@@ -203,6 +203,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Areas\RoleManager\Controllers\PermissionsController.cs" />
+    <Compile Include="Areas\RoleManager\Controllers\RoleManagerController.cs" />
     <Compile Include="Areas\RoleManager\Controllers\RolesController.cs" />
     <Compile Include="Areas\RoleManager\Controllers\UsersController.cs" />
     <Compile Include="Areas\RoleManager\Models\RoleManagerModel.cs" />
@@ -264,6 +265,7 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cosmobootstrap.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -347,6 +349,7 @@
     <Content Include="Areas\RoleManager\Views\Shared\DisplayTemplates\PermissionList_Display.cshtml" />
     <Content Include="Areas\RoleManager\Views\web.config" />
     <Content Include="Areas\RoleManager\Views\Shared\DisplayTemplates\RolesList_Display.cshtml" />
+    <Content Include="Areas\RoleManager\Views\RoleManager\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
