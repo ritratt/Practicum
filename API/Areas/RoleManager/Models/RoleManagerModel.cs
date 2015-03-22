@@ -29,6 +29,13 @@ namespace API.Areas.RoleManager.Models
         public String Name { get; set; }
     }
 
+    public class CreateUserViewModel
+    {
+        public User User { get; set; }
+
+        public IEnumerable<SelectListItem> RolesList { get; set; }
+    }
+
     public class CreateRoleViewModel
     {
         public Role Role { get; set; }

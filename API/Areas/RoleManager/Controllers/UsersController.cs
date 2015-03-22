@@ -39,7 +39,20 @@ namespace API.Areas.RoleManager.Controllers
         // GET: RoleManager/Users/Create
         public ActionResult Create()
         {
-            return View();
+            var user = new User();
+
+            user.Roles = new List<Role>();
+
+            return View(new CreateUserViewModel
+            {
+                User = user,
+                RolesList = db.Roles.ToList().Select(x => new SelectListItem()
+                {
+                    Selected = user.Roles.Contains(x),
+                    Text = x.Name,
+                    Value = x.Name
+                })
+            });
         }
 
         // POST: RoleManager/Users/Create
@@ -47,8 +60,17 @@ namespace API.Areas.RoleManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GTAccount")] User user)
+        public ActionResult Create(CreateUserViewModel model, String[] selectedRoles)
         {
+            var user = model.User;
+            user.Roles= new List<Role>();
+
+            foreach (var selectedRole in selectedRoles)
+            {
+                var role = db.Roles.FirstOrDefault(r => r.Name == selectedRole);
+                user.Roles.Add(role);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Users.Add(user);
@@ -56,7 +78,7 @@ namespace API.Areas.RoleManager.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(model);
         }
 
         // GET: RoleManager/Users/Edit/5

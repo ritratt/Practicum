@@ -1,26 +1,31 @@
 ﻿@model API.Areas.RoleManager.Models.User
 
 @{
-    Layout = null;
+    ViewBag.Title = "Details";
 }
 
-<!DOCTYPE html>
+<h2>Details</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>User</h4>
-        <hr />
-        <dl class="dl-horizontal">
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.GTAccount }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GTAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GTAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roles)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Roles, "RolesList_Display")
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GTAccount }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,4 +1,6 @@
-﻿@model API.Areas.RoleManager.Models.Permission
+﻿@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@model API.Areas.RoleManager.Models.Permission
 
 @{
     ViewBag.Title = "View";
@@ -18,6 +20,7 @@
         @Html.TextBoxFor(model => model.Name)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Name)
+        @Html.EditorFor(model => model.Name)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

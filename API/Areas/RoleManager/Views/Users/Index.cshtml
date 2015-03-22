@@ -1,9 +1,5 @@
 ﻿@model IEnumerable<API.Areas.RoleManager.Models.User>
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 
 <html>
@@ -17,19 +13,28 @@
     </p>
     <table class="table">
         <tr>
-            <th></th>
+            <th>
+                User
+            </th>
+            <th>
+                Action
+            </th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.GTAccount }) |
-                @Html.ActionLink("Details", "Details", new { id=item.GTAccount }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.GTAccount })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.GTAccount
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.GTAccount }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.GTAccount }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.GTAccount })
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>

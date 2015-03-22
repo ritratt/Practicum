@@ -6,6 +6,8 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.Pkcs;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.Results;
@@ -44,10 +46,13 @@ namespace API.Controllers
         [Route("api/DoorSwipes/GetDoorSwipeByCustId/{CustId}")]
         public IHttpActionResult GetDoorSwipeByCustId(String CustId)
         {
-            if (!(_utilProvider.HasPermission("ReadCustId" + CustId)))
+            var apiKey = HttpContext.Current.Request.Headers["apikey"];
+            
+            if (!(_utilProvider.HasPermissionForId(apiKey, CustId)))
             {
                 return Ok("You do not have permission to access door swipes for this user.");
             }
+
             var Swipes = db.DoorSwipes
                 .Where(s => s.C_CUST_ID_ == CustId);
 
@@ -63,6 +68,9 @@ namespace API.Controllers
         [Route("api/DoorSwipes/GetDoorSwipeByLocation/{LocationId}")]
         public IHttpActionResult GetDoorSwipeByLocation(String LocationId)
         {
+            if (!(_utilProvider.HasPermission("Read_ByLocation")))
+                return Ok("You do not have permission.");
+
             var Swipes = db.DoorSwipes
                 .Where(s => s.C_DOOR_ID_ == LocationId);
             

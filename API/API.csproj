@@ -267,6 +267,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\logos\gt-logo-footer.png" />
+    <Content Include="images\logos\logo_gt_itg.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -305,7 +307,6 @@
       <DependentUpon>DoorSwipes.edmx</DependentUpon>
       <LastGenOutput>DoorSwipes.cs</LastGenOutput>
     </Content>
-    <Content Include="Areas\RoleManager\Views\web.config" />
     <Content Include="Areas\RoleManager\Views\Permissions\Create.cshtml" />
     <Content Include="Areas\RoleManager\Views\Permissions\Delete.cshtml" />
     <Content Include="Areas\RoleManager\Views\Permissions\Details.cshtml" />
@@ -344,6 +345,8 @@
     <Content Include="Areas\AppManager\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\RoleManager\Views\Permissions\Edit.cshtml" />
     <Content Include="Areas\RoleManager\Views\Shared\DisplayTemplates\PermissionList_Display.cshtml" />
+    <Content Include="Areas\RoleManager\Views\web.config" />
+    <Content Include="Areas\RoleManager\Views\Shared\DisplayTemplates\RolesList_Display.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
