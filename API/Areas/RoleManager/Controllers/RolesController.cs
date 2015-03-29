@@ -90,11 +90,22 @@ namespace API.Areas.RoleManager.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Role role = db.Roles.Find(id);
+
             if (role == null)
             {
                 return HttpNotFound();
             }
-            return View(role);
+
+            return View(new CreateRoleViewModel
+            {
+                Role = role,
+                PermissionsList = db.Permissions.ToList().Select(x => new SelectListItem()
+                {
+                    Selected = role.Permissions.Contains(x),
+                    Text = x.Name,
+                    Value = x.Name
+                })
+            });
         }
 
         // POST: RoleManager/Roles/Edit/5
@@ -102,15 +113,34 @@ namespace API.Areas.RoleManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Name")] Role role)
+        public ActionResult Edit(CreateRoleViewModel model, String[] selectedPermissions)
         {
+            var role = db.Roles.FirstOrDefault(r => r.Name == model.Role.Name);
+
+            foreach (var permission in role.Permissions)
+            {
+                if (!(selectedPermissions.Contains(permission.Name)))
+                {
+                    role.Permissions.Remove(permission);
+                }
+            }
+
+            foreach (var s in selectedPermissions)
+            {
+                var permission = db.Permissions
+                    .FirstOrDefault(p => p.Name == s);
+                role.Permissions.Add(permission);
+            }
+
             if (ModelState.IsValid)
             {
+                //db.Roles.Attach(role);
                 db.Entry(role).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(role);
+
+            return View(model);
         }
 
         // GET: RoleManager/Roles/Delete/5

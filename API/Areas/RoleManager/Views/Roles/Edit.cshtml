@@ -1,10 +1,6 @@
 ﻿@using System.Web.Mvc.Html
 @using System.Web.Optimization
-@model API.Areas.RoleManager.Models.Role
-
-@{
-    Layout = null;
-}
+@model API.Areas.RoleManager.Models.CreateRoleViewModel
 
 <!DOCTYPE html>
 
@@ -21,13 +17,24 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
+        <br/>
         <div class="form-horizontal">
-            <h4>Role</h4>
-            <hr />
+            <h4>@Html.Label(Model.Role.Name)</h4>
+            <hr/>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Name)
-    
+            @Html.HiddenFor(model => model.Role.Name, new { @class = "control-label col-md-2" })
+
+            <div class="form-group">
+                @Html.Label("Permissions", new {@class = "control-label col-md-2"})
+                <span class=" col-md-10">
+                    @foreach (var item in Model.PermissionsList)
+                    {
+                        <input type="checkbox" name="SelectedPermissions" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                        @Html.Label(item.Value, new {@class = "control-label"})
+                    }
+                </span>
+            </div>
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />

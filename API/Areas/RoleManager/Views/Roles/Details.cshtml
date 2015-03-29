@@ -9,18 +9,19 @@
     <title>Details</title>
 </head>
 <body>
-    <div>
-        <h4>Role</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.LabelFor(model => model.Name)
-            </dt>
-            <dt>
-                @Html.DisplayFor(model => model.Permissions, "PermissionList_Display")
-            </dt>
-        </dl>
-    </div>
+<div>
+    <h4>@Model.Name</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.Name)
+        </dt>
+        <dt>
+            @Html.DisplayFor(model => model.Permissions, "PermissionList_Display")
+        </dt>
+        <br/>
+    </dl>
+</div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Name }) |
         @Html.ActionLink("Back to List", "Index")
