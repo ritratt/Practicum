@@ -174,6 +174,11 @@
     <Compile Include="Areas\AppManager\Controllers\AppsController.cs" />
     <Compile Include="Areas\AppManager\Models\AppManagerContext.cs" />
     <Compile Include="Areas\AppManager\Models\App.cs" />
+    <Compile Include="Areas\Buzzcoin\BuzzcoinAreaRegistration.cs" />
+    <Compile Include="Areas\Buzzcoin\Controllers\BuzzcoinController.cs" />
+    <Compile Include="Areas\Buzzcoin\Models\BuzzcoinModel.cs" />
+    <Compile Include="Areas\Buzzcoin\Providers\IBuzzcoinProvider.cs" />
+    <Compile Include="Areas\Buzzcoin\Providers\Implementations\BuzzcoinProvider.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -230,6 +235,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BuzzcoinContext.cs" />
     <Compile Include="Models\Door.cs">
       <DependentUpon>DoorSwipes.tt</DependentUpon>
     </Compile>
@@ -350,6 +356,13 @@
     <Content Include="Areas\RoleManager\Views\Shared\DisplayTemplates\RolesList_Display.cshtml" />
     <Content Include="Areas\RoleManager\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\RoleManager\Views\RoleManager\Index.cshtml" />
+    <Content Include="Areas\Buzzcoin\Views\web.config" />
+    <Content Include="Areas\Buzzcoin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Buzzcoin\Views\Buzzcoin\Create.cshtml" />
+    <Content Include="Areas\Buzzcoin\Views\Buzzcoin\Delete.cshtml" />
+    <Content Include="Areas\Buzzcoin\Views\Buzzcoin\Details.cshtml" />
+    <Content Include="Areas\Buzzcoin\Views\Buzzcoin\Edit.cshtml" />
+    <Content Include="Areas\Buzzcoin\Views\Buzzcoin\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
