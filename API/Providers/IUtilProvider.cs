@@ -17,5 +17,7 @@ namespace API.Providers
         Boolean HasPermission(String p);
 
         Boolean HasPermissionForId(String apiKey, String id);
+
+        Boolean IsAdmin(String apiKey);
     }
 }

@@ -54,12 +54,9 @@ namespace API.Providers
             //This function takes a permission as argument and returns true or false if the user has the permission.
             var apiKey = HttpContext.Current.Request.Headers["APIKey"];
 
-            var permission = _roleManagerContext.Permissions.First(perm => perm.Name == p);
+            var permission = _roleManagerContext.Permissions.FirstOrDefault(perm => perm.Name == p);
 
-            var gtid = _appContext.Apps
-                .Where(a => a.Id == apiKey)
-                .Select(u => u.GTAccount)
-                .FirstOrDefault();
+            var gtid = GetGtId(apiKey);
 
             var roles = _roleManagerContext.Users
                 .Where(u => u.GTAccount == gtid)
@@ -87,6 +84,36 @@ namespace API.Providers
                 return true;
             }
             return false;
+        }
+
+        public Boolean IsAdmin(String apiKey)
+        {
+            var gtId = GetGtId(apiKey);
+
+            var roles = _roleManagerContext.Users
+                .Where(u => u.GTAccount == gtId)
+                .Select(u => u.Roles)
+                .FirstOrDefault();
+
+            foreach (var role in roles)
+            {
+                if (role.Name == "Admin")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //Util within utils! Yo dawg!
+        private string GetGtId(String apiKey)
+        {
+            var gtid = _appContext.Apps
+                .Where(a => a.Id == apiKey)
+                .Select(u => u.GTAccount)
+                .FirstOrDefault();
+
+            return gtid;
         }
     }
 

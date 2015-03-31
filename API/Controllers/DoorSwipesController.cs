@@ -21,7 +21,7 @@ namespace API.Controllers
     public class DoorSwipesController : ApiController
     {
         private DoorSwipesEntities db = new DoorSwipesEntities();
-        private IUtilProvider _utilProvider;
+        private readonly IUtilProvider _utilProvider;
 
         public DoorSwipesController()
         {
@@ -48,20 +48,21 @@ namespace API.Controllers
         {
             var apiKey = HttpContext.Current.Request.Headers["apikey"];
             
-            if (!(_utilProvider.HasPermissionForId(apiKey, CustId)))
+            if ((_utilProvider.HasPermissionForId(apiKey, CustId)) || _utilProvider.IsAdmin(apiKey))
             {
-                return Ok("You do not have permission to access door swipes for this user.");
+                var Swipes = db.DoorSwipes
+               .Where(s => s.C_CUST_ID_ == CustId);
+
+                var swipeColumns = _utilProvider.SwipeColumninator(Swipes);
+
+                if (swipeColumns.Count == 0)
+                    return Ok("No Results found");
+                else
+                    return Ok(swipeColumns);
             }
 
-            var Swipes = db.DoorSwipes
-                .Where(s => s.C_CUST_ID_ == CustId);
-
-            var swipeColumns = _utilProvider.SwipeColumninator(Swipes);
-
-            if (swipeColumns.Count == 0)
-                return Ok("No Results found");
-            else
-                return Ok(swipeColumns);
+            return Ok("You do not have permission to access door swipes for this user.");
+           
         }
 
         // GET: api/DoorSwipes/GetDoorSwipeByLocation/123

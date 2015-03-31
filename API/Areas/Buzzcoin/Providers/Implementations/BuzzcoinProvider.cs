@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 
 namespace API.Areas.Buzzcoin.Providers.Implementations
@@ -27,6 +29,10 @@ namespace API.Areas.Buzzcoin.Providers.Implementations
              * Extract eligible swipes
              * Calculate coins earned
             */
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(_url);
+            client.DefaultRequestHeaders.Add("apikey", apiKey);
+
             return "1";
         }
     }

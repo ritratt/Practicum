@@ -16,7 +16,7 @@ namespace API.Areas.Buzzcoin
         {
             context.MapRoute(
                 "Buzzcoin_default",
-                "{controller}/{action}/{id}",
+                "Buzzcoin/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }
