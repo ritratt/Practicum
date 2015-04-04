@@ -39,6 +39,8 @@ namespace API.Areas.Buzzcoin.Models
 
     public class HomeViewModel
     {
+        public String GtId { get; set; }
+
         public String ApiKey { get; set; }
     }
 }
