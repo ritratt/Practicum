@@ -36,4 +36,9 @@ namespace API.Areas.Buzzcoin.Models
 
         public String DoorId { get; set; }
     }
+
+    public class HomeViewModel
+    {
+        public String ApiKey { get; set; }
+    }
 }

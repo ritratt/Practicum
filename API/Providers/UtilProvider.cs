@@ -57,6 +57,10 @@ namespace API.Providers
             var permission = _roleManagerContext.Permissions.FirstOrDefault(perm => perm.Name == p);
 
             var gtid = GetGtId(apiKey);
+            if (gtid == null)
+            {
+                //return error?
+            }
 
             var roles = _roleManagerContext.Users
                 .Where(u => u.GTAccount == gtid)
