@@ -48,7 +48,7 @@ namespace API.Controllers
         {
             var apiKey = HttpContext.Current.Request.Headers["apikey"];
             
-            if ((_utilProvider.HasPermissionForId(apiKey, CustId)) || _utilProvider.IsAdmin(apiKey) true)
+            if ((_utilProvider.HasPermissionForId(apiKey, CustId)) || _utilProvider.IsAdmin(apiKey))
             {
                 var Swipes = db.DoorSwipes
                .Where(s => s.C_CUST_ID_ == CustId);
