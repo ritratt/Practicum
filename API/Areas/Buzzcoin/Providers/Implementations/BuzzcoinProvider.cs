@@ -30,17 +30,14 @@ namespace API.Areas.Buzzcoin.Providers.Implementations
             set { }
         }
 
-        public String GetEarned(String apiKey)
+        public String GetEarned(String gtid, String apiKey)
         {
             /*
              * Get all of todays swipes
              * Extract eligible swipes
              * Calculate coins earned
             */
-
-            var user = db.BuzzcoinUsers.FirstOrDefault(u => u.ApiKey == apiKey);
-            var gtid = "310620"; //user.GtId;
-
+            
             var json = RequestAPI(gtid, apiKey);
 
             return json;
@@ -53,12 +50,29 @@ namespace API.Areas.Buzzcoin.Providers.Implementations
             return newBalance.ToString();
         }
 
+        public string CustIdResolver(string gtid)
+        {
+            switch (gtid)
+            {
+                case "gtadmin":
+                    return "310620";
+
+                case "rsatpute3":
+                    return "291192";
+
+                case "gburdell":
+                    return "3114433";
+            }
+
+            return "315741";
+        }
+
         #region Util
 
         public String RequestAPI(String gtid, String apiKey)
         {
-            //FIX THIS AND MAKE IT WORK LIKE A NNORMAL PERSON!!
-            var webrequest = WebRequest.Create("http://localhost:55944/api/DoorSwipes/GetDoorSwipeByCustId/" + gtid);
+            var custId = CustIdResolver(gtid);
+            var webrequest = WebRequest.Create("http://localhost:55944/api/DoorSwipes/GetDoorSwipeByCustId/" + custId);
             webrequest.Headers.Add("apikey", apiKey);
             webrequest.ContentType = "application/json; charset=utf-8";
             var respStream = webrequest.GetResponse().GetResponseStream();

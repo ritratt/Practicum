@@ -78,11 +78,12 @@ namespace API.Providers
 
         public Boolean HasPermissionForId(String apiKey, String id)
         {
-            var Id = _appContext.Apps
+            var GtId = _appContext.Apps
                 .Where(a => a.Id == apiKey)
                 .Select(r => r.GTAccount)
                 .FirstOrDefault();
 
+            var Id = CustIdResolver(GtId);
             if (Id == id)
             {
                 return true;
@@ -110,7 +111,7 @@ namespace API.Providers
         }
 
         //Util within utils! Yo dawg!
-        private string GetGtId(String apiKey)
+        private String GetGtId(String apiKey)
         {
             var gtid = _appContext.Apps
                 .Where(a => a.Id == apiKey)
@@ -118,6 +119,23 @@ namespace API.Providers
                 .FirstOrDefault();
 
             return gtid;
+        }
+
+        public String CustIdResolver(string gtid)
+        {
+            switch (gtid)
+            {
+                case "gtadmin":
+                    return "310620";
+
+                case "rsatpute3":
+                    return "291192";
+
+                case "gburdell":
+                    return "3114433";
+            }
+
+            return "315741";
         }
     }
 
