@@ -115,15 +115,9 @@ namespace API.Areas.RoleManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CreateRoleViewModel model, String[] selectedPermissions)
         {
-            var role = db.Roles.FirstOrDefault(r => r.Name == model.Role.Name);
+            var role = model.Role;
 
-            foreach (var permission in role.Permissions)
-            {
-                if (!(selectedPermissions.Contains(permission.Name)))
-                {
-                    role.Permissions.Remove(permission);
-                }
-            }
+            role.Permissions = new List<Permission>();
 
             foreach (var s in selectedPermissions)
             {
@@ -134,7 +128,6 @@ namespace API.Areas.RoleManager.Controllers
 
             if (ModelState.IsValid)
             {
-                //db.Roles.Attach(role);
                 db.Entry(role).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

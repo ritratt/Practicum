@@ -100,6 +100,9 @@ namespace API.Providers
                 .Select(u => u.Roles)
                 .FirstOrDefault();
 
+            if (roles == null)
+                return false;
+
             foreach (var role in roles)
             {
                 if (role.Name == "Admin")
@@ -108,6 +111,23 @@ namespace API.Providers
                 }
             }
             return false;
+        }
+
+        public String CustIdResolver(String gtid)
+        {
+            switch (gtid)
+            {
+                case "gtadmin":
+                    return "310620";
+
+                case "rsatpute3":
+                    return "291192";
+
+                case "gburdell":
+                    return "311443";
+            }
+
+            return "315741";
         }
 
         //Util within utils! Yo dawg!
@@ -119,23 +139,6 @@ namespace API.Providers
                 .FirstOrDefault();
 
             return gtid;
-        }
-
-        public String CustIdResolver(string gtid)
-        {
-            switch (gtid)
-            {
-                case "gtadmin":
-                    return "310620";
-
-                case "rsatpute3":
-                    return "291192";
-
-                case "gburdell":
-                    return "3114433";
-            }
-
-            return "315741";
         }
     }
 

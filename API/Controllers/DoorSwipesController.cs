@@ -42,16 +42,17 @@ namespace API.Controllers
             return Ok(doorSwipe);
         }
 
-        // GET: api/DoorSwipes/GetDoorSwipeByCustId/123
-        [Route("api/DoorSwipes/GetDoorSwipeByCustId/{CustId}")]
-        public IHttpActionResult GetDoorSwipeByCustId(String CustId)
+        // GET: api/DoorSwipes/GetDoorSwipeByGtId/gburdell2
+        [Route("api/DoorSwipes/GetDoorSwipesByGtId/{gtid}")]
+        public IHttpActionResult GetDoorSwipesByGtId(String gtid)
         {
+            var custId = _utilProvider.CustIdResolver(gtid);
             var apiKey = HttpContext.Current.Request.Headers["apikey"];
             
-            if ((_utilProvider.HasPermissionForId(apiKey, CustId)) || _utilProvider.IsAdmin(apiKey))
+            if ((_utilProvider.HasPermissionForId(apiKey, custId)) || _utilProvider.IsAdmin(apiKey))
             {
                 var Swipes = db.DoorSwipes
-               .Where(s => s.C_CUST_ID_ == CustId);
+               .Where(s => s.C_CUST_ID_ == custId);
 
                 var swipeColumns = _utilProvider.SwipeColumninator(Swipes);
 
@@ -67,9 +68,9 @@ namespace API.Controllers
 
         // GET: api/DoorSwipes/GetDoorSwipeByLocation/123
         [Route("api/DoorSwipes/GetDoorSwipeByLocation/{LocationId}")]
-        public IHttpActionResult GetDoorSwipeByLocation(String LocationId)
+        public IHttpActionResult GetDoorSwipesByLocation(String LocationId)
         {
-            if (!(_utilProvider.HasPermission("Read_ByLocation")))
+            if (!(_utilProvider.HasPermission("Read_Location")))
                 return Ok("You do not have permission.");
 
             var Swipes = db.DoorSwipes
@@ -82,13 +83,6 @@ namespace API.Controllers
             else
                 return Ok(swipeColumns);
         }
-
-        /*// GET: api/DoorSwipes/GetDoorSwipeByName/123
-        [Route("api/DoorSwipes/GetDoorSwipeByName/{Name}")]
-        public IHttpActionResult GetDoorSwipeByName(String Name)
-        {
-            
-        }*/
 
         //GET: api/DoorSwipes/GetDoorSwipesByDoorName/{DoorName}
         [Route("api/DoorSwipes/GetDoorSwipesByDoorName/{DoorName}")]
@@ -112,7 +106,7 @@ namespace API.Controllers
                 return Ok(swipeColumns);
         }
 
-        //GET: api/DoorSwipes/GetDoorSwipesByDate/{Date}
+        //GET: api/DoorSwipes/GetDoorSwipesByTimeStamp/{Date}
         [Route("api/DoorSwipes/GetDoorSwipesByTimeStamp/{dateTimeStamp}")]
         public IHttpActionResult GetDoorSwipesByTimeStamp(String dateTimeStamp)
         {

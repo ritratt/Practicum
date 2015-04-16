@@ -19,5 +19,7 @@ namespace API.Providers
         Boolean HasPermissionForId(String apiKey, String id);
 
         Boolean IsAdmin(String apiKey);
+
+        String CustIdResolver(String gtid);
     }
 }

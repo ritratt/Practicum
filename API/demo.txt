@@ -1,0 +1,7 @@
+1. Create gburdell under apps.
+2. Read gburdell swipes with and without apikey.
+3. Show rsatpute3 has admin rights.
+4. Read gburdell's swipes using rsatpute api key.
+
+5. show buzzcoin login with gburdell
+6. show buzzcoin login with rsatpute3

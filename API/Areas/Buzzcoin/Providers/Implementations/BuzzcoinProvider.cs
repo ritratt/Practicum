@@ -71,8 +71,7 @@ namespace API.Areas.Buzzcoin.Providers.Implementations
 
         public String RequestAPI(String gtid, String apiKey)
         {
-            var custId = CustIdResolver(gtid);
-            var webrequest = WebRequest.Create("http://localhost:55944/api/DoorSwipes/GetDoorSwipeByCustId/" + custId);
+            var webrequest = WebRequest.Create("http://localhost:55944/api/DoorSwipes/GetDoorSwipesBygtId/" + gtid);
             webrequest.Headers.Add("apikey", apiKey);
             webrequest.ContentType = "application/json; charset=utf-8";
             var respStream = webrequest.GetResponse().GetResponseStream();
@@ -82,7 +81,7 @@ namespace API.Areas.Buzzcoin.Providers.Implementations
             var rawData = Encoding.ASCII.GetString(responseBytes, 0, count);
             var json = Json.Decode(rawData);
 
-            var earned = CalculateEarned("284", "343", json);
+            var earned = CalculateEarned("65", "64", json);
 
             return earned.ToString();
         }
